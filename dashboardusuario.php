@@ -39,15 +39,18 @@ else
                 ON ws.plazo = i.id 
             WHERE wu.id_usuario =$id_cliente AND ws.id_status = 1 AND comentarios IS NOT NULL;
     ");
-    //Solicitudes de otros usuarios
+   //Solicitudes de otros usuarios
     $Consultas4 = $Conexion ->query("
-        SELECT wu.id_usuario as idUsuario,wu.username as nombre,ws.id_solicitud as id_solicitud,ws.plazo as plazo,ws.monto as monto,h.comentarios as comentarios,ws.fecha_solicitud as fecha
-    FROM web_usuarios wu
-    LEFT JOIN web_solicitudes ws
-    ON wu.id_usuario = ws.id_usuario
-    LEFT JOIN historial h
-    ON h.id_usuario = ws.id_usuario
-        where wu.id_usuario != $id_cliente AND ws.id_status = 0;
+        SELECT DISTINCT ws.id_status,wu.id_usuario as idUsuario,wu.username as nombre,ws.id_solicitud as id_solicitud,
+            ws.plazo as plazo,ws.monto as monto,h.comentarios as comentarios,ws.fecha_solicitud as fecha
+                FROM web_usuarios wu
+                INNER JOIN web_solicitudes ws
+                ON wu.id_usuario = ws.id_usuario
+                JOIN (SELECT MAX(id_historial) id_historial, id_usuario FROM historial GROUP BY id_usuario) max_his
+                ON ws.id_usuario = max_his.id_usuario
+                INNER JOIN historial h
+                ON h.id_historial = max_his.id_historial
+               where wu.id_usuario != $id_cliente AND ws.id_status = 0;
     ");
 ?>
 
@@ -73,7 +76,7 @@ else
 
     <script src="diseno/js/jquery.js"></script>
 </head>
-<body>
+<body onload="longPoll()">
     <?php include "app/menu.php"; ?>
     <!-- CONTAINER -->
     <div class="container content-section">
@@ -216,12 +219,16 @@ else
                         <?php
                     }
                     ?>
+                    <?php  
+                }
+                ?>
                     </tbody>
                 </table>
-
+                
             </div>
         </div>
     </div>
+    
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -265,23 +272,13 @@ else
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
             <button onclick="registrar()" class="btn btn-primary">Registrar</button>
           </div>
-        
         </div>
       </div>
     </div>
     <script type="text/javascript" src="diseno/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="diseno/js/jquery.min.js"></script>
     <script type="text/javascript" src="diseno/js/sweetalert.min.js"></script>
-    <script type="text/javascript" src="diseno/js/concredito.js"></script>
-    <script type="text/javascript" src="diseno/js/bootstrap.bundle.js"></script>
-    <script type="text/javascript" src="diseno/js/bootstrap.bundle.min.js"></script>
-    
-    
-    <script type="text/javascript" language="javascript" src="diseno/Tablas/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="diseno/Tablas/dataTables.bootstrap.min.js"></script>
-
+    <script type="text/javascript" src="diseno/js/concredito.js"></script> 
 </body>
 </html>
-<?php  
-}
-?>
+

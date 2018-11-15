@@ -10,8 +10,8 @@
 		public function __construct(){
 			// $this->servidor   = "34.211.45.98";
 			$this->servidor   = "localhost";
-			$this->usuario	  = "root";
-			$this->contraseña = "";
+			$this->usuario	  = "safwin";
+			$this->contraseña = "trm000";
 			$this->basedatos  = "proyecto_blas";
 		}
 

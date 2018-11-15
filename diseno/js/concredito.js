@@ -108,26 +108,37 @@ function LogOut(){
     });
 
 }
-var paginaActual = 0;
-//Actualizacion automatica
-window.ajaxUpdate = true;
-setInterval(function(){
-  console.log("entro");
-  longPoll();
-},5000);
+
+function checarnotificaciones() {
+  var paginaActual = 0;
+  //Actualizacion automatica
+  window.ajaxUpdate = true;
+  setInterval(function(){
+    console.log("entro2");
+    location.reload();
+  },30000);
+}
 
 function longPoll(){
 console.log('entre longpoll');
 var opcion = "notificaciones";
 $.ajax({
         type: 'post',
-        url: 'funciones.php',
+        url: 'registrarsolicitud.php',
         data: "&opcion="+opcion,
       success: function (response) {
          //console.log(response);
          if (response == 1) {
+          checarnotificaciones();
+          console.log("entro if");
            swal('Tienes nuevas Solicitudes por votar');
+         }else{
+          checarnotificaciones();
+          console.log("entro else");
+          
          }
+         
+
       }
     });
 }

@@ -67,6 +67,7 @@ else
     <link href="diseno/css/bootstrap.min.css" rel="stylesheet">
     <link href="diseno/css/grayscale.css" rel="stylesheet">
     <link href="diseno/css/default.css" rel="stylesheet">
+    <link href="diseno/css/sweetalert.css" rel="stylesheet">
     <link href="diseno/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="diseno/Tablas/jquery.dataTables.css">
 
@@ -270,9 +271,11 @@ else
     </div>
     <script type="text/javascript" src="diseno/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="diseno/js/jquery.min.js"></script>
+    <script type="text/javascript" src="diseno/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="diseno/js/concredito.js"></script>
     <script type="text/javascript" src="diseno/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="diseno/js/bootstrap.bundle.min.js"></script>
+    
     
     <script type="text/javascript" language="javascript" src="diseno/Tablas/jquery.dataTables.min.js"></script>
     <script type="text/javascript" language="javascript" src="diseno/Tablas/dataTables.bootstrap.min.js"></script>

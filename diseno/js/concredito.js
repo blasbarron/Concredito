@@ -19,6 +19,7 @@ $('#btn_login').on('click', function(){
                 break;
             case '2': 
                     location.href='dashboardusuario.php';
+
                 break;
             default:
                 alert(resp);
@@ -104,5 +105,29 @@ function LogOut(){
         else{
             location.href='index.php';
         }
+    });
+
+}
+var paginaActual = 0;
+//Actualizacion automatica
+window.ajaxUpdate = true;
+setInterval(function(){
+  console.log("entro");
+  longPoll();
+},5000);
+
+function longPoll(){
+console.log('entre longpoll');
+var opcion = "notificaciones";
+$.ajax({
+        type: 'post',
+        url: 'funciones.php',
+        data: "&opcion="+opcion,
+      success: function (response) {
+         //console.log(response);
+         if (response == 1) {
+           swal('Tienes nuevas Solicitudes por votar');
+         }
+      }
     });
 }

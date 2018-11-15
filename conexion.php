@@ -1,5 +1,5 @@
 <?php
-$Conexion = new mysqli("localhost", "safwin", "trm000", "proyecto_blas");
+$Conexion = new mysqli("localhost", "root", "", "proyecto_blas");
 $Conexion->set_charset("utf8");
 
 

@@ -12,6 +12,7 @@
     <link href="diseno/css/bootstrap.min.css" rel="stylesheet">
     <link href="diseno/css/grayscale.css" rel="stylesheet">
     <link href="diseno/css/default.css" rel="stylesheet">
+    <link href="diseno/css/sweetalert.css" rel="stylesheet">
     <link href="diseno/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="https://fonts.googleapis.com/css?family=Oswald|Ranga|Roboto|Kaushan+Script" rel="stylesheet">
@@ -39,6 +40,7 @@
 
     <script type="text/javascript" src="diseno/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="diseno/js/jquery.min.js"></script>
+    <script type="text/javascript" src="diseno/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="diseno/js/concredito.js"></script>
 </body>
 </html>

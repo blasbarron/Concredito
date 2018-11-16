@@ -46,9 +46,9 @@ else
                 FROM web_usuarios wu
                 INNER JOIN web_solicitudes ws
                 ON wu.id_usuario = ws.id_usuario
-                JOIN (SELECT MAX(id_historial) id_historial, id_usuario FROM historial GROUP BY id_usuario) max_his
+                LEFT JOIN (SELECT MAX(id_historial) id_historial, id_usuario FROM historial GROUP BY id_usuario) max_his
                 ON ws.id_usuario = max_his.id_usuario
-                INNER JOIN historial h
+                LEFT JOIN historial h
                 ON h.id_historial = max_his.id_historial
                where wu.id_usuario != $id_cliente AND ws.id_status = 0;
     ");
